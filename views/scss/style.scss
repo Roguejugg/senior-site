@@ -1,0 +1,132 @@
+@font-face {
+  font-family: "SFUI";
+  src: url("../fonts/SFUIDisplay-Regular.ttf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "SFUI";
+  src: url("../fonts/SFUIDisplay-Medium.ttf");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "SFUI";
+  src: url("../fonts/SFUIDisplay-Semibold.ttf");
+  font-weight: 600;
+}
+body{
+  padding: 0;
+  margin: 0;
+  background: #202124;
+}
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+}
+h1{
+  color: white;
+  font-family: "SFUI";
+  font-weight: 600;
+  font-size: 44px;
+}
+.input-wrapper{
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 500px;
+  margin-bottom: 12px;
+}
+input{
+  width: 100%;
+  box-sizing: border-box;
+  background: none;
+  border: 2px solid gray;
+  padding: 16px 24px;
+  color: white;
+  font-family: "SFUI";
+  font-weight: 400;
+  font-size: 18px;
+  transition: 0.2s linear;
+  text-align: center;
+  border-radius: 8px;
+  &:focus{
+    outline: 0;
+    border: 2px solid white;
+  }
+}
+.btn{
+  background-color: #6b80ef;
+  color: white;
+  font-family: "SFUI";
+  font-weight: 500;
+  font-size: 22px;
+  padding: 12px 28px;
+  margin-top: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+  transition: 0.3s;
+  &:hover{
+    opacity: 0.85;
+  }
+  &:active{
+    opacity: 0.5;
+  }
+}
+.text-withlink{
+  font-family: "SFUI";
+  font-weight: 400;
+  font-size: 16px;
+  margin-top: 12px;
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.auth-alert{
+  display: none;
+  margin-top: 24px;
+  font-size: 22px;
+  color: rgb(255, 49, 49);
+  font-family: "SFUI";
+  font-weight: 500;
+}
+.logout{
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  filter: invert(1);
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  transition: 0.3s filter;
+  &:hover{
+    filter: invert(0.85)
+  }
+}
+.responses{
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 20px;
+  width: 700px;
+  margin-top: 48px;
+}
+.responses-item{
+  padding: 20px;
+  border-radius: 16px;
+  font-family: "SFUI";
+  color: white;
+}
+.item-gpt{
+  background: rgb(83, 83, 83);
+  margin-right: auto;
+  font-weight: 400;
+}
+.item-user{
+  background: #373737;
+  margin-left: auto;
+  font-weight: 500;
+}

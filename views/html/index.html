@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="../imgs/favicon.png" />
+  <title>Anonymous CHAT GPT - Main</title>
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <main>
+    <h1>Type your question for CHAT-GPT</h1>
+    <div class="input-wrapper">
+      <input id="input-question">
+    </div>
+    <button class="btn" id="btn-go">Go!</button>
+    <span class="auth-alert"></span>
+    <div class="responses"></div>
+  </main>
+  <a href="/logout"><img class="logout" src="https://cdn-icons-png.flaticon.com/128/1828/1828427.png"></a>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    const input1 = document.querySelector("#input-question"),
+    authAlert = document.querySelector(".auth-alert")
+
+    document.querySelector("#btn-go").addEventListener('click', function(){
+      if(input1.value != ""){
+        var newDiv = document.createElement('div')
+        newDiv.classList.add("responses-item")
+        newDiv.classList.add("item-user")
+        newDiv.innerHTML = input1.value
+        document.querySelector(".responses").appendChild(newDiv)
+        axios.post('/gpt-ask', {  
+          question: input1.value
+        })
+        .then(function (response) {
+          if(response.data.error != true){
+            authAlert.style.display = "none"
+            var newDiv = document.createElement('div')
+            newDiv.classList.add("responses-item")
+            newDiv.classList.add("item-gpt")
+            newDiv.innerHTML = response.data.response
+            document.querySelector(".responses").appendChild(newDiv)
+          } else{
+            authAlert.style.display = "flex"
+            document.querySelector(".auth-alert").innerHTML = response.data.errorText
+          }
+        })
+      } else{
+        authAlert.style.display = "flex"
+        document.querySelector(".auth-alert").innerHTML = "Message field cannot be empty"
+      }
+      
+    })
+  </script>
+</body>
+</html>

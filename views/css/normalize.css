@@ -1,0 +1,39 @@
+body{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+div{
+    box-sizing: border-box;
+}
+a{
+    color: unset;
+    text-decoration: unset;
+    cursor: pointer;
+}
+button{
+    background: unset;
+    outline: unset;
+    border: unset;
+    cursor: pointer;
+}
+h1 {
+    display: block;
+    font-size: unset;
+    margin-block-start: unset;
+    margin-block-end: unset;
+    margin-inline-start: unset;
+    margin-inline-end: unset;
+    font-weight: unset;
+    unicode-bidi: unset;
+}
+h2 {
+    display: block;
+    font-size: unset;
+    margin-block-start: unset;
+    margin-block-end: unset;
+    margin-inline-start: unset;
+    margin-inline-end: unset;
+    font-weight: unset;
+    unicode-bidi: unset;
+}

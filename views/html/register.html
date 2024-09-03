@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="../imgs/favicon.png" />
+  <title>Anonymous CHAT GPT - Register</title>
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <main>
+    <h1>Register</h1>
+    <div class="input-wrapper">
+      <input id="input-login">
+      <input type="password" id="input-password-1">
+      <input type="password" id="input-password-2">
+    </div>
+    <button class="btn" id="btn-reg">Register</button>
+    <a href="/" class="text-withlink">
+      Already have an account? Log in
+    </a>
+    <span class="auth-alert"></span>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    const input1 = document.querySelector("#input-login"),
+    input2 = document.querySelector("#input-password-1"),
+    input3 = document.querySelector("#input-password-2"),
+    authAlert = document.querySelector(".auth-alert")
+
+    document.querySelector("#btn-reg").addEventListener('click', function(){
+      if(input1.value != "" && input2.value != "" && input3.value != "" && input2.value == input3.value){
+        authAlert.style.display = "none"
+        axios.post('/register', {
+          username: input1.value,
+          password: input2.value
+        })
+        .then(function (response) {
+          if(response.data.error != true){
+            document.cookie = `token=${response.data.token}; path=/; secure; samesite=strict`
+            location.href = "/"
+          } else{
+            authAlert.style.display = "flex"
+            document.querySelector(".auth-alert").innerHTML = response.data.errorText
+          }
+        })
+      } else if(input1.value == "" || input2.value == "" || input3.value == ""){
+        authAlert.style.display = "flex"
+        document.querySelector(".auth-alert").innerHTML = "All fields must not be empty"
+      } else if(input2.value != input3.value){
+        authAlert.style.display = "flex"
+        document.querySelector(".auth-alert").innerHTML = "Password doesnt match"
+      }
+  })
+    
+    
+  </script>
+</body>
+</html>
